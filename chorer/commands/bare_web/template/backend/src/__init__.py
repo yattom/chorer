@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 
 
 def create_app(test_config=None):
@@ -14,8 +14,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.route('/')
+    def index():
+        return redirect('/index.html')
+
     @app.route('/alive')
     def hello():
-        return f'service is running, {url_for("static", filename="index.html")=}'
+        return f'service is running'
 
     return app

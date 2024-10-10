@@ -20,6 +20,3 @@ def bare_web(path, appname):
     return invoke(Path(path), appname)
 
 
-if __name__=='__main__':
-    cli()
-

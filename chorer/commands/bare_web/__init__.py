@@ -4,9 +4,10 @@ import subprocess
 
 
 def invoke(path, appname):
-    shutil.copytree(Path(__file__).parent / 'template', path / appname)
-    subprocess.run('PIPENV_VENV_IN_PROJECT=1 pipenv install -d', shell=True, cwd=path / appname / backend)
+    resource = Path(__file__).parent
+    shutil.copytree(resource / 'template', path / appname)
+    subprocess.run('PIPENV_IGNORE_VIRTUALENVS=1 PIPENV_VENV_IN_PROJECT=1 pipenv install -d', shell=True, cwd=path / appname / 'backend')
     subprocess.run('npx create-vue frontend --default', shell=True, cwd=path / appname)
     subprocess.run('npm install', shell=True, cwd=path / appname / 'frontend')
-    subprocess.run('patch < vite.config.js.diff', shell=True, cwd=path / appname / 'frontend')
+    subprocess.run(f'patch < {(resource / "vite.config.js.diff").absolute()}', shell=True, cwd=path / appname / 'frontend')
 

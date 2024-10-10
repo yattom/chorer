@@ -1,0 +1,13 @@
+*** vite.config.js.old	2024-10-10 11:51:30.151155067 +0900
+--- vite.config.js	2024-10-10 11:44:27.485974163 +0900
+*************** export default defineConfig({
+*** 12,16 ****
+--- 12,19 ----
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
++   },
++   build: {
++     outDir: '../backend/src/static'
+    }
+  })

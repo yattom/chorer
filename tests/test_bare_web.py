@@ -20,5 +20,5 @@ def test_output_structure(runner, tmp_path):
     assert (tmp_path / 'apptest' / 'backend').is_dir()
     assert (tmp_path / 'apptest' / 'frontend').is_dir()
     assert (tmp_path / 'apptest' / 'frontend' / 'package.json').is_file()
-    # assert (tmp_path / 'apptest' / 'frontend' / 'node_packages').is_dir()
+    assert (tmp_path / 'apptest' / 'frontend' / 'node_modules').is_dir()
 

@@ -19,3 +19,4 @@ def test_output_structure(runner, tmp_path):
     result = bare_web(tmp_path.absolute(), 'apptest')
     assert (tmp_path / 'apptest' / 'backend').is_dir()
     assert (tmp_path / 'apptest' / 'frontend').is_dir()
+    assert (tmp_path / 'apptest' / 'frontend' / 'package.json').is_file()

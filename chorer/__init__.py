@@ -17,6 +17,7 @@ def cli(ctx):
 def bare_web(path, appname):
     """build bare web application"""
     from .commands.bare_web import invoke
-    return invoke(Path(path), appname)
+    guidance = invoke(Path(path), appname)
+    echo(guidance)
 
 

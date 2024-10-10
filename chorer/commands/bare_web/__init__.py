@@ -11,3 +11,16 @@ def invoke(path, appname):
     subprocess.run('npm install', shell=True, cwd=path / appname / 'frontend')
     subprocess.run(f'patch < {(resource / "vite.config.js.diff").absolute()}', shell=True, cwd=path / appname / 'frontend')
 
+    guidance = '''
+Bare minimum web application is built.
+
+Compile front end asset with:
+    $ cd frontend
+    $ npm run build
+
+Start service:
+    $ cd backend
+    $ pipenv run flask --app src run --debug
+'''
+    return guidance
+

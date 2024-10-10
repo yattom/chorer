@@ -18,6 +18,7 @@ def test_help(runner):
 def test_output_structure(runner, tmp_path):
     result = invoke(tmp_path.absolute(), 'apptest')
     assert (tmp_path / 'apptest' / 'backend').is_dir()
+    assert (tmp_path / 'apptest' / 'backend' / '.venv').is_dir()
     assert (tmp_path / 'apptest' / 'frontend').is_dir()
     assert (tmp_path / 'apptest' / 'frontend' / 'package.json').is_file()
     assert (tmp_path / 'apptest' / 'frontend' / 'node_modules').is_dir()

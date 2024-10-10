@@ -1,17 +1,24 @@
 import sys
-from click import command, option, argument
+from click import command, option, argument, group, pass_context, echo, style
 from pathlib import Path
 
 
-@command
+@group
+@pass_context
+def cli(ctx):
+    if ctx.invoked_subcommand is None:
+        echo(click,style('specify a subcommand'))
+        echo(cli.get_help(ctx))
+
+
+@cli.command
 @option('--appname', default='webapp')
 @argument('path')
 def bare_web(path, appname):
     """build bare web application"""
-    from .commands.bare_web import bare_web as m
-    return m.bare_web(Path(path), appname)
+    from .commands.bare_web import invoke
+    return invoke(Path(path), appname)
 
 
 if __name__=='__main__':
-    print('specify a subcommand', file=sys.stderr)
-    sys.exit(255)
+    cli()
